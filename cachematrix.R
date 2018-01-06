@@ -28,8 +28,11 @@ cacheSolve <- function(x, ...) {
     return(inv)
   }
   data <- x$get()
-  inv <- solve(data, ...)
-  x$setinverse(inv)
-  inv
-  
+  if( det(data) == 0 )
+      print("this matrix is not invertable")
+  else{
+      inv <- solve(data, ...)
+      x$setinverse(inv)
+      inv
+  }
 }
